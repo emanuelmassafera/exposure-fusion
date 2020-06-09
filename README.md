@@ -44,3 +44,9 @@ As imagens abaixo mostram os resultados obtidos ao utilizar o algoritmo proposto
 ![](images_doc/taipei_before.png)
 ### Imagem final
 ![](images_doc/taipei_after.png)
+
+## Referências 
+
+Mertens, Tom, Jan Kautz, and Frank Van Reeth. "Exposure fusion: A simple and practical alternative to high dynamic range photography." Computer graphics forum. Vol. 28. No. 1. Oxford, UK: Blackwell Publishing Ltd, 2009.
+
+http://<span></span>github.com/kbmajeed/exposure_fusion
