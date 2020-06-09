@@ -3,7 +3,7 @@ Trabalho de Computação Gráfica e Multimídia acerca da técnica Exposure Fusi
 
 ## Executando o código
 
-O código foi desenvolvido em Python e utilizamos o Jupyter Notebook para execução. Ele tem como objetivo criar uma imagem final a partir de  uma sequência de imagens capturadas com tempos de exposição diferentes, através da técnica exposure fusion.
+O código foi desenvolvido em Python e utilizamos o Jupyter Notebook para execução. Ele tem como objetivo criar uma imagem final melhorada a partir de  uma sequência de imagens capturadas com tempos de exposição diferentes, através da técnica exposure fusion.
 
 Caso queira testar em sua máquina, siga os seguintes passos:
 
@@ -24,4 +24,23 @@ path = r"C:\Users\emanu\Desktop\Projects\exposure-fusion\room"
 ```python
 cv2.imwrite('img_MultiresolutionFusion2.png', final_imageD.astype('uint8'))
 ```
-- Feito os passos anteriores, basta rodar a aplicação. As imagens resultantes ficarão salvas na pasta **results**;
+- Feito os passos anteriores, basta rodar a aplicação. As imagens resultantes ficarão salvas na pasta **results**.
+
+## Resultados
+
+As imagens abaixo mostram os resultados obtidos ao utilizar o algoritmo proposto:
+
+### Coleção de imagens
+![](images_doc/room_before.png)
+### Imagem final
+![](images_doc/room_after.png)
+
+### Coleção de imagens
+![](images_doc/street_before.png)
+### Imagem final
+![](images_doc/street_after.png)
+
+### Coleção de imagens
+![](images_doc/taipei_before.png)
+### Imagem final
+![](images_doc/taipei_after.png)
