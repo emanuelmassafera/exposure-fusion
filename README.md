@@ -1,5 +1,72 @@
-# exposure-fusion
-Trabalho de Computação Gráfica e Multimídia acerca da técnica Exposure Fusion
+<h1 align="center"> Exposure Fusion </h1>
+
+<p align="center">
+Trabalho de Computação Gráfica e Multimídia acerca da técnica Exposure Fusion, de Tom Mertens
+</p>
+
+---
+
+## Introdução
+
+### Trabalhos relacionados
+
+## Exposure Fusion
+
+A fusão de exposição calcula a imagem desejada mantendo apenas as melhores partes da sequência de exposição. Esse processo é guiado por um conjunto de medidas de qualidade, que são consolidads em um mapa de peso com valor escalar.
+
+*Regiões planas e incolores, causadas por subexposição e superexposição, devem receber pesos menores do que regiões com cores brilhantes e detalhes, por exemplo.*
+
+Podemos pensar na sequência de entrada como uma pilha de imagens e a imagem final sendo obtida 'colapsando' a pilha através de uma mistura ponderada. As imagens devem estar perfeitamente alinhadas antes de realizar a fusão.
+
+### Medidas de qualidade
+
+#### Contraste 
+
+- Para o cálculo da medida de contraste, aplica-se um filtro Laplaciano a cada imagem em escala de cinza e obtém-se um valor **C** absoluto como resposta. É uma medida que geralmente atribui um peso maior à elementos como bordas e texturas.
+
+### Saturação
+
+- As cores saturadas são desejáveis e tornam a imagem mais vívida. A medida de saturação **S** é calculada pelo desvio padrão dentro dos canais R, G e B, em cada pixel.
+
+### Well-exposedness / Exposição
+
+- Observar apenas as intensidades brutas dentro de um canal revela quão bem um pixel é exposto. Sendo assim, é desejado manter as intensidades que não sejam próximas do limite inferior (subexpostas) ou do limite superior (sobrexpostas). Cada instensidade foi ponderada com base na proximidade de 0,5 ( longe dos dois extremos) usando uma curva Gaussiana: < EQUAÇÃO >
+
+- Para imagens coloridas, a curva Gaussiana deve ser aplicada a cada canal separadamente e os resultados multiplicados, resultando na medida **E**.
+
+Após encontrar as três medidas, elas são combinadas em um mapa de peso escalar usando multiplicação. Optou-se pelo uso de função exponencial para controlar a influência de cada medida:
+
+< EQUAÇÃO >
+
+> *C, S e E referem-se ao contraste, saturação e exposição, e wc, ws e we aos seus pesos correspondentes. ij, k faz referência ao pixel (i, j) da imagem k.*
+
+Os valores dos mapas de pesos são normalizados para que resultados consistentes sejam alcançados.
+
+### Fusão
+
+
+
+### Discussão
+
+## Resultados
+
+### Qualidade
+
+### Performance
+
+### Incluindo exposições de flash
+
+### Comparação de medidades de qualidade
+
+## Conclusão
+
+Foi proposta uma técnica capaz de fundir uma sequência de imagens com diferentes exposições em uma imagem final de alta qualidade, sem converter primeiro para HDR. Ela evita a calibração da curva de resposta da câmera, é computacionalmente mais eficiente e permite incluir imagens com exposição de flash na sequência.
+
+A técnica combina as imagens guiada por medidas simples de qualidade, que são contraste, saturação e exposição. Isto é feito com resoluções múltiplas a fim de explicar a variação de brilho na sequência e é controlada por apenas alguns parâmetros intuitivos.
+
+Para finalizar, o autor explicita seu desejo de investigar diferentes decomposições de imagens piramidais, como wavelets e pirâmides direcionáveis, além de examinar a aplicabilidade da técnica criada em outras tarefas de fusão de imagem, como extensão de profundida de campo e imagens multimodais.
+
+---
 
 ## Executando o código
 
@@ -24,9 +91,9 @@ path = r"C:\Users\emanu\Desktop\Projects\exposure-fusion\room"
 ```python
 cv2.imwrite('img_MultiresolutionFusion2.png', final_imageD.astype('uint8'))
 ```
-- Feito os passos anteriores, basta rodar a aplicação. As imagens resultantes ficarão salvas na pasta **results**.
+- Feito os passos, basta rodar a aplicação. As imagens resultantes ficarão salvas na pasta **results**.
 
-## Resultados
+## Resultados do algoritmo
 
 As imagens abaixo mostram os resultados obtidos ao utilizar o algoritmo proposto:
 
@@ -47,6 +114,6 @@ As imagens abaixo mostram os resultados obtidos ao utilizar o algoritmo proposto
 
 ## Referências 
 
-Mertens, Tom, Jan Kautz, and Frank Van Reeth. "Exposure fusion: A simple and practical alternative to high dynamic range photography." Computer graphics forum. Vol. 28. No. 1. Oxford, UK: Blackwell Publishing Ltd, 2009.
+Mertens, Tom, Jan Kautz, and Frank Van Reeth. "Exposure fusion: A simple and practical alternative to high dynamic range photography." Computer graphics forum. Vol. 28. No. 1. Oxford, UK: Blackwell Publishing Ltd, 2009. [:page_facing_up:](https://github.com/emanuelmassafera/exposure-fusion/blob/master/exposure_fusion.pdf)
 
 http://<span></span>github.com/kbmajeed/exposure_fusion
