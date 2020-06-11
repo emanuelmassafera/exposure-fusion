@@ -64,6 +64,10 @@ Em primeiro lugar, as imagens de entrada são decompostas em uma pirâmide Lapla
 
 Dessa forma, cada nível da pirâmide laplaciana resultante é calculado como uma média ponderada das decomposições laplacianas originais para o nível l, com o l-ésimo nível da pirâmide gaussiana do mapa de pesos servindo como máscara. Para finalizar, a pirâmide resultante é então colapsada.
 
+![](images_doc/fusion.png)
+
+Fluxo do algoritmo:
+
 ![](images_doc/flow.png)
 
 ### Discussão
