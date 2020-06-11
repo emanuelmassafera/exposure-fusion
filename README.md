@@ -62,7 +62,7 @@ Dessa forma, cada nível da pirâmide laplaciana resultante é calculado como um
 
 ### Discussão
 
-
+A forma como as imagens são misturadas é um problema frequente no que diz respeito ao processamento de imagens. Neste artigo, uma técnica de resolução baseada em pirâmides de imagens foi utilizada, no entanto outros métodos também estão disponíveis. Em particular, a mistura baseada em gradiente demonstrou ser eficaz em fusão de imagens.
 
 ## Resultados
 
