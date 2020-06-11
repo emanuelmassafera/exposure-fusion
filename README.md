@@ -30,7 +30,7 @@ Podemos pensar na sequência de entrada como uma pilha de imagens e a imagem fin
 
 ### Well-exposedness / Exposição
 
-- Observar apenas as intensidades brutas dentro de um canal revela quão bem um pixel é exposto. Sendo assim, é desejado manter as intensidades que não sejam próximas do limite inferior (subexpostas) ou do limite superior (sobrexpostas). Cada instensidade foi ponderada com base na proximidade de 0,5 ( longe dos dois extremos) usando uma curva Gaussiana: < EQUAÇÃO 1 >
+- Observar apenas as intensidades brutas dentro de um canal revela quão bem um pixel é exposto. Sendo assim, é desejado manter as intensidades que não sejam próximas do limite inferior (subexpostas) ou do limite superior (sobrexpostas). Cada instensidade foi ponderada com base na proximidade de 0,5 ( longe dos dois extremos) usando uma curva Gaussiana: <img src="images_doc/eq1.png" width="150"/>
 
 - Para imagens coloridas, a curva Gaussiana deve ser aplicada a cada canal separadamente e os resultados multiplicados, resultando na medida **E**.
 
