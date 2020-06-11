@@ -30,13 +30,13 @@ Podemos pensar na sequência de entrada como uma pilha de imagens e a imagem fin
 
 ### Well-exposedness / Exposição
 
-- Observar apenas as intensidades brutas dentro de um canal revela quão bem um pixel é exposto. Sendo assim, é desejado manter as intensidades que não sejam próximas do limite inferior (subexpostas) ou do limite superior (sobrexpostas). Cada instensidade foi ponderada com base na proximidade de 0,5 ( longe dos dois extremos) usando uma curva Gaussiana: < EQUAÇÃO >
+- Observar apenas as intensidades brutas dentro de um canal revela quão bem um pixel é exposto. Sendo assim, é desejado manter as intensidades que não sejam próximas do limite inferior (subexpostas) ou do limite superior (sobrexpostas). Cada instensidade foi ponderada com base na proximidade de 0,5 ( longe dos dois extremos) usando uma curva Gaussiana: < EQUAÇÃO 1 >
 
 - Para imagens coloridas, a curva Gaussiana deve ser aplicada a cada canal separadamente e os resultados multiplicados, resultando na medida **E**.
 
 Após encontrar as três medidas, elas são combinadas em um mapa de peso escalar usando multiplicação. Optou-se pelo uso de função exponencial para controlar a influência de cada medida:
 
-< EQUAÇÃO >
+< EQUAÇÃO 2 >
 
 > *C, S e E referem-se ao contraste, saturação e exposição, e wc, ws e we aos seus pesos correspondentes. ij, k faz referência ao pixel (i, j) da imagem k.*
 
@@ -44,9 +44,25 @@ Os valores dos mapas de pesos são normalizados para que resultados consistentes
 
 ### Fusão
 
+Para fundir as imagens, uma média ponderada ao longo de cada pixel deve ser calculada, usando os pesos obtidos a partir das medidas de qualidade.
+ 
+ < EQUAÇÃO 3 >
 
+No entanto, apenas aplicando a equação acima não é possível alcançar um resultado satisfatório. Em situações em que os pesos variam rapidamente, distorções indesejáveis aparecem.
+
+Para resolver este problema, uma técnica de outros autores, Burt e Adelson, foi utilizada. A técnica original combina perfeitamente duas imagens, guiadas por uma máscara alfa, e trabalha várias resoluções usando uma decomposição de imagem piramidal.
+
+Em primeiro lugar, as imagens de entrada são decompostas em uma pirâmide Laplaciana, a qual contém basicamente versões passa-banda filtradas em diferentes escalas. A mistura então é realizada para cada nível separadamente. A técnica foi adaptada para este uso, onde há N imagens e N mapas de peso, que atuarão como máscaras alfa. Assim, misturamos os coeficientes de forma semelhante à primeira equação, ficando:
+
+< EQUAÇÃO 4 >
+
+> Os níveis da pirâmide são representados por l.
+
+Dessa forma, cada nível da pirâmide laplaciana resultante é calculado como uma média ponderada das decomposições laplacianas originais para o nível l, com o l-ésimo nível da pirâmide gaussiana do mapa de pesos servindo como máscara. Para finalizar, a pirâmide resultante é então colapsada.
 
 ### Discussão
+
+
 
 ## Resultados
 
