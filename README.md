@@ -8,7 +8,9 @@ Trabalho de Computação Gráfica e Multimídia acerca da técnica Exposure Fusi
 
 ## Introdução
 
-Exposure fusion é uma técnica que consiste em mesclar várias imagens com diferentes exposições em uma única imagem de alta qualidade com uma latitude de exposição adequada. As imagens selecionadas são separadas e analisadas cada uma dentro dos itens específicos escolhidos: saturação, contraste e well-exposedness (exposição). Essa análise é feita pixel a pixel e são escolhidas aquelas com a melhor qualidade dentro da característica em questão.Com isso, a fusão traz o melhor de cada imagem, entregando um ótimo resultado final. Essa técnica não necessita nenhuma imagem HDR computada nem se preocupar com a calibração da câmera, necessita apenas medir as qualidades das características citadas. Vale salientar que, o método não aumenta a qualidade de exposição das imagens originais, mas produz uma imagem final com um nível de exposição de qualidade.
+Exposure fusion é uma técnica que consiste em mesclar várias imagens com diferentes exposições em uma única imagem de alta qualidade com uma latitude de exposição adequada. As imagens selecionadas são separadas e analisadas cada uma dentro dos itens específicos escolhidos: saturação, contraste e well-exposedness (exposição). Essa análise é feita pixel a pixel e são escolhidas aquelas com a melhor qualidade dentro da característica em questão. 
+
+Com isso, a fusão traz o melhor de cada imagem, entregando um ótimo resultado final. Essa técnica não necessita de nenhuma imagem HDR computada, nem se preocupar com a calibração da câmera, necessita apenas de medir as qualidades das características citadas. Vale salientar que, o método não aumenta a qualidade de exposição das imagens originais, mas produz uma imagem final com um nível de exposição de maior qualidade.
 
 ### Trabalhos relacionados
 
@@ -88,35 +90,37 @@ Todas as imagens usadas estão no formato JPG e tem a correção gama e a curva 
 
 Nos exemplos a seguir podemos ver uma sequência de fotos com diferentes exposições: subexposto, exposição normal e superexposto. Cada uma delas apresenta particularidades que outras não possuem. A técnica de fusão permite justamente pegar o melhor que cada uma delas tem a oferecer, preservando os detalhes.
 
-<quality_1>
-<quality_2>
+![](images_doc/quality_1.png)
+
+![](images_doc/quality_2.png)
 
 Em comparação com algumas técnicas famosas de tone mapping, como de Durand, Reinhard e de Li, é possível ver que, em relação as duas primeiras, a fusão de exposições apresenta um melhor contraste, e em relação a terceira, o nível de contraste é semelhante, porém com uma leve supersaturação. É possível também notar uma melhor exibição em relação as cores, principalmente com o zoom na segunda imagem.
 
-<quality_3>
-<quality_4>
+![](images_doc/quality_3.png)
+
+![](images_doc/quality_4.png)
 
 A técnica apesar de suas vantagens, também apresenta problemas, como é possível notar na figura abaixo. Existe uma falsa sensação de mudança nos brilhos de baixa frequência, o que não acontece nas imagens originais. Isso ocorre devido a uma variação muito alta no brilho entre as diferentes exposições das imagens. É possível resolver esse problema usando pirâmides laplacianas maiores, porém, a altura da pirâmide é limitada ao tamanho dos filtros de downsampling e upsampling.
 
-<quality_5>
+![](images_doc/quality_5.png)
 
 ### Performance
 
 A técnica pode ser feita em questão de segundos, e, após adicionar as pirâmides laplacianas, promovem aos usuários um maior controle do processo de fusão, permitindo o ajuste dos pesos de cada medida usada. É possível também adicionar diferentes controles as imagens de entrada (curva de gama por exemplo), o que pode trazer maior influência de exposição. A tabela a seguir mostra o tempo decorrido para imagens de ½, 1 e 2 megapixels. O início (init.) é a construção das pirâmides laplacianas e update computa os mapas de pesos.
 
-<table_1>
+![](images_doc/table_1.png)
 
 ### Incluindo exposições de flash
 
 O uso do flash das câmeras permite visualizar vários detalhes, mas, em certas ocasiões, acaba gerando fotos desagradáveis. É possível usar a técnica de fusão para mesclar fotos com e sem flash, resultando uma imagem de qualidade como no exemplo a seguir.
 
-<flash>
+![](images_doc/flash.png)
 
 ### Comparação de medidades de qualidade
 
 A imagem abaixo mostra uma comparação entra as medidas usadas para mapear e fundir as imagens de entrada. Como já foi dito, a técnica usa saturação, contraste e well-exposedness como medidas para alcançar um resultado final agradável aos olhos. Analisando as imagens, podemos afirmar que a exposição pode por si só gerar imagens de qualidade, porém, em alguns casos, não tão naturais pois favorece intensidades na faixa de 0,5. Contraste e saturação não apresentam esse problema, mas os resultados não são sempre tão interessantes como os das medidas de well-exposedness podem ser.
 
-<compare>
+![](images_doc/compare.png)
 
 ## Conclusão
 
