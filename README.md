@@ -8,7 +8,13 @@ Trabalho de Computação Gráfica e Multimídia acerca da técnica Exposure Fusi
 
 ## Introdução
 
+Exposure fusion é uma técnica que consiste em mesclar várias imagens com diferentes exposições em uma única imagem de alta qualidade com uma latitude de exposição adequada. As imagens selecionadas são separadas e analisadas cada uma dentro dos itens específicos escolhidos: saturação, contraste e well-exposedness (exposição). Essa análise é feita pixel a pixel e são escolhidas aquelas com a melhor qualidade dentro da característica em questão.Com isso, a fusão traz o melhor de cada imagem, entregando um ótimo resultado final. Essa técnica não necessita nenhuma imagem HDR computada nem se preocupar com a calibração da câmera, necessita apenas medir as qualidades das características citadas. Vale salientar que, o método não aumenta a qualidade de exposição das imagens originais, mas produz uma imagem final com um nível de exposição de qualidade.
+
 ### Trabalhos relacionados
+
+Muitos dispositivos são incapazes de mostrar fielmente as imagens HDR. Com isso, as técnicas de mapeamento de tons (tone mapping) buscam comprimir, isto é, adequar as imagens para uma qualidade em que os dispositivos sejam capazes de reproduzir. Existem diversas formas de aplicar o tone mapping, como por exemplo, mapear de forma uniforme a intensidade da imagem, ou mapear a imagem variando de acordo com diferentes regiões. O primeiro caso traz velocidade, mas não resulta em uma imagem muito “bonita”, já o segundo, as imagens ficam mais agradáveis, porém também algumas vezes, não tão naturais.
+
+Dentre tantas técnicas, duas são relacionadas ao trabalho apresentado. A primeira também computa algumas medidas, com a diferença de ser em diferentes escalas, e o segundo usa decomposição em pirâmide de imagens atenuando os coeficientes em cada nível, diferente do método do trabalho, que também usa um método baseado em pirâmides, mas trabalha com os coeficientes das diferentes exposições. Muitos tone mappings tentam imitar o olho humano, mas nesse método, o objetivo é mostrar imagens bonitas com a maior quantidade de detalhes e cores possíveis.
 
 ## Exposure Fusion
 
@@ -76,13 +82,41 @@ A forma como as imagens são misturadas é um problema frequente no que diz resp
 
 ## Resultados
 
+Todas as imagens usadas estão no formato JPG e tem a correção gama e a curva de correção da câmera desconhecidos, além disso, os pesos das medidas de saturação, contraste e well-exposedness dos exemplos são iguais na maioria dos exemplos (1).
+
 ### Qualidade
+
+Nos exemplos a seguir podemos ver uma sequência de fotos com diferentes exposições: subexposto, exposição normal e superexposto. Cada uma delas apresenta particularidades que outras não possuem. A técnica de fusão permite justamente pegar o melhor que cada uma delas tem a oferecer, preservando os detalhes.
+
+<quality_1>
+<quality_2>
+
+Em comparação com algumas técnicas famosas de tone mapping, como de Durand, Reinhard e de Li, é possível ver que, em relação as duas primeiras, a fusão de exposições apresenta um melhor contraste, e em relação a terceira, o nível de contraste é semelhante, porém com uma leve supersaturação. É possível também notar uma melhor exibição em relação as cores, principalmente com o zoom na segunda imagem.
+
+<quality_3>
+<quality_4>
+
+A técnica apesar de suas vantagens, também apresenta problemas, como é possível notar na figura abaixo. Existe uma falsa sensação de mudança nos brilhos de baixa frequência, o que não acontece nas imagens originais. Isso ocorre devido a uma variação muito alta no brilho entre as diferentes exposições das imagens. É possível resolver esse problema usando pirâmides laplacianas maiores, porém, a altura da pirâmide é limitada ao tamanho dos filtros de downsampling e upsampling.
+
+<quality_5>
 
 ### Performance
 
+A técnica pode ser feita em questão de segundos, e, após adicionar as pirâmides laplacianas, promovem aos usuários um maior controle do processo de fusão, permitindo o ajuste dos pesos de cada medida usada. É possível também adicionar diferentes controles as imagens de entrada (curva de gama por exemplo), o que pode trazer maior influência de exposição. A tabela a seguir mostra o tempo decorrido para imagens de ½, 1 e 2 megapixels. O início (init.) é a construção das pirâmides laplacianas e update computa os mapas de pesos.
+
+<table_1>
+
 ### Incluindo exposições de flash
 
+O uso do flash das câmeras permite visualizar vários detalhes, mas, em certas ocasiões, acaba gerando fotos desagradáveis. É possível usar a técnica de fusão para mesclar fotos com e sem flash, resultando uma imagem de qualidade como no exemplo a seguir.
+
+<flash>
+
 ### Comparação de medidades de qualidade
+
+A imagem abaixo mostra uma comparação entra as medidas usadas para mapear e fundir as imagens de entrada. Como já foi dito, a técnica usa saturação, contraste e well-exposedness como medidas para alcançar um resultado final agradável aos olhos. Analisando as imagens, podemos afirmar que a exposição pode por si só gerar imagens de qualidade, porém, em alguns casos, não tão naturais pois favorece intensidades na faixa de 0,5. Contraste e saturação não apresentam esse problema, mas os resultados não são sempre tão interessantes como os das medidas de well-exposedness podem ser.
+
+<compare>
 
 ## Conclusão
 
