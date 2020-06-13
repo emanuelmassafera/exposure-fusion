@@ -90,37 +90,37 @@ Todas as imagens usadas estão no formato JPG e tem a correção gama e a curva 
 
 Nos exemplos a seguir podemos ver uma sequência de fotos com diferentes exposições: subexposto, exposição normal e superexposto. Cada uma delas apresenta particularidades que outras não possuem. A técnica de fusão permite justamente pegar o melhor que cada uma delas tem a oferecer, preservando os detalhes.
 
-![](images_doc/quality_1.png)
+![](images_doc/quality_1.PNG)
 
-![](images_doc/quality_2.png)
+![](images_doc/quality_2.PNG)
 
 Em comparação com algumas técnicas famosas de tone mapping, como de Durand, Reinhard e de Li, é possível ver que, em relação as duas primeiras, a fusão de exposições apresenta um melhor contraste, e em relação a terceira, o nível de contraste é semelhante, porém com uma leve supersaturação. É possível também notar uma melhor exibição em relação as cores, principalmente com o zoom na segunda imagem.
 
-![](images_doc/quality_3.png)
+![](images_doc/quality_3.PNG)
 
-![](images_doc/quality_4.png)
+![](images_doc/quality_4.PNG)
 
 A técnica apesar de suas vantagens, também apresenta problemas, como é possível notar na figura abaixo. Existe uma falsa sensação de mudança nos brilhos de baixa frequência, o que não acontece nas imagens originais. Isso ocorre devido a uma variação muito alta no brilho entre as diferentes exposições das imagens. É possível resolver esse problema usando pirâmides laplacianas maiores, porém, a altura da pirâmide é limitada ao tamanho dos filtros de downsampling e upsampling.
 
-![](images_doc/quality_5.png)
+![](images_doc/quality_5.PNG)
 
 ### Performance
 
 A técnica pode ser feita em questão de segundos, e, após adicionar as pirâmides laplacianas, promovem aos usuários um maior controle do processo de fusão, permitindo o ajuste dos pesos de cada medida usada. É possível também adicionar diferentes controles as imagens de entrada (curva de gama por exemplo), o que pode trazer maior influência de exposição. A tabela a seguir mostra o tempo decorrido para imagens de ½, 1 e 2 megapixels. O início (init.) é a construção das pirâmides laplacianas e update computa os mapas de pesos.
 
-![](images_doc/table_1.png)
+![](images_doc/table_1.PNG)
 
 ### Incluindo exposições de flash
 
 O uso do flash das câmeras permite visualizar vários detalhes, mas, em certas ocasiões, acaba gerando fotos desagradáveis. É possível usar a técnica de fusão para mesclar fotos com e sem flash, resultando uma imagem de qualidade como no exemplo a seguir.
 
-![](images_doc/flash.png)
+![](images_doc/flash.PNG)
 
 ### Comparação de medidades de qualidade
 
 A imagem abaixo mostra uma comparação entra as medidas usadas para mapear e fundir as imagens de entrada. Como já foi dito, a técnica usa saturação, contraste e well-exposedness como medidas para alcançar um resultado final agradável aos olhos. Analisando as imagens, podemos afirmar que a exposição pode por si só gerar imagens de qualidade, porém, em alguns casos, não tão naturais pois favorece intensidades na faixa de 0,5. Contraste e saturação não apresentam esse problema, mas os resultados não são sempre tão interessantes como os das medidas de well-exposedness podem ser.
 
-![](images_doc/compare.png)
+![](images_doc/compare.PNG)
 
 ## Conclusão
 
