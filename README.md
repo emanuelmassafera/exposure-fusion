@@ -32,11 +32,11 @@ Podemos pensar na sequência de entrada como uma pilha de imagens e a imagem fin
 
 - Para o cálculo da medida de contraste, aplica-se um filtro Laplaciano a cada imagem em escala de cinza e obtém-se um valor **C** absoluto como resposta. É uma medida que geralmente atribui um peso maior à elementos como bordas e texturas.
 
-### Saturação
+#### Saturação
 
 - As cores saturadas são desejáveis e tornam a imagem mais vívida. A medida de saturação **S** é calculada pelo desvio padrão dentro dos canais R, G e B, em cada pixel.
 
-### Well-exposedness / Exposição
+#### Well-exposedness / Exposição
 
 - Observar apenas as intensidades brutas dentro de um canal revela quão bem um pixel é exposto. Sendo assim, é desejado manter as intensidades que não sejam próximas do limite inferior (subexpostas) ou do limite superior (sobrexpostas). Cada instensidade foi ponderada com base na proximidade de 0,5 ( longe dos dois extremos) usando uma curva Gaussiana:
 
